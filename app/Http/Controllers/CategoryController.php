@@ -88,6 +88,5 @@ class CategoryController extends Controller
         return view('layoutPro.product_list')->with('category',$cate)
         ->with('category_name',$category_name)
         ->with('category_by_id',$category_by_id);
-
     }
 }
