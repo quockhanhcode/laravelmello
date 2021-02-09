@@ -29,7 +29,7 @@ class ProductController extends Controller
         $cate = DB::table('category_product')->orderby('category_id','desc')->get();
         $show_product = DB::table('product')
         ->join('category_product','category_product.category_id','=','product.category_id')
-        ->orderby('product.product_id','desc')->get();
+        ->orderby('product.product_id','desc')->paginate(8);
         $manager_product = view('admin.product.show_product')->with('show_product',$show_product)->with('category',$cate);
         return view('admin.admin_layout')->with('admin.product.show_product',$manager_product);
     }

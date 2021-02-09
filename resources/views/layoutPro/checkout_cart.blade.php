@@ -11,7 +11,6 @@ $content = Cart::content();
                 <th style="width:50%">Tên sản phẩm</th>
                 <th style="width:10%">Giá</th>
                 <th style="width:8%">Số lượng</th>
-                <th style="width:22%" class="text-center">Thành tiền</th>
                 <th style="width:10%"> </th>
             </tr>
         </thead>
@@ -21,7 +20,7 @@ $content = Cart::content();
                 <td data-th="Product">
                     <div class="row">
                         <div class="col-sm-2 hidden-xs"><img
-                                src="{{URL::to('public/image/' .$cart_content->options->image)}}"
+                                src="{{URL::to('images/' .$cart_content->options->image)}}"
                                 alt="" class="img-responsive" width="100">
                         </div>
                         <div class="col-sm-10">
@@ -30,12 +29,13 @@ $content = Cart::content();
                     </div>
                 </td>
                 <td data-th="Price">{{number_format($cart_content->price).'VNĐ'}}</td>
-                <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
-                </td>
-                <td data-th="Subtotal" class="text-center">{{number_format($cart_content->price).'VNĐ'}}</td>
+                <form action="{{URL::to('update-cart')}}" method="post">
+                {{csrf_field()}}
+                <td><input class="form-control text-center" name="quantity" value="{{$cart_content->qty}}" type="number"></td>
+                <input type="hidden" value="{{$cart_content->rowId}}" name="rowId_cart">
                 <td class="actions" data-th="">
-                    <button class="btn btn-info btn-sm"><i class="fa fa-edit">Cập nhật</i>
-                    </button>
+                    <input type="submit" value="Cập nhật" class="btn btn-info btn-sm"></input>
+                </form>
                     <a href="{{URL::to('/delete-to-cart/'.$cart_content->rowId)}}" onclick="return confirm('Are you sure?');"
                      class="btn btn-danger btn-sm"><i class="fa fa-trash-o">Xóa</i></a>
                 </td>
@@ -54,7 +54,7 @@ $content = Cart::content();
                 <td colspan="2" class="hidden-xs"> </td>
                 <td class="hidden-xs text-center"><strong>Tổng tiền {{Cart::subtotal().'VNĐ'}}</strong>
                 </td>
-                <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i
+                <td><a href="" class="btn btn-success btn-block">Thanh toán <i
                             class="fa fa-angle-right"></i></a>
                 </td>
             </tr>

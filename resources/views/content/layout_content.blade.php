@@ -357,6 +357,39 @@
 			</div>
 		</div>
 	</div>
+	<br>
+	<!-- Hiễn thị sp -->
+<div class="container bootdey">
+<h1>Sản phẩm mới</h1>
+<div class="row">
+@foreach($all_product as $key => $pro)
+    <!-- Product Item -->
+    <div class="product-grid col-xs-12 col-sm-6 col-md-3">
+      <div class="product-item">
+        <div class="sale-tag">
+        </div>
+        <div class="image">
+          <a href=""><img src="{{URL::to('images/'.$pro->product_image)}}"></a>
+        </div>
+        <div class="caption">
+          <div class="name text-center">
+            <a href="{{URL::to('chi-tiet-san-pham/'.$pro->product_id)}}">{{$pro->product_name}}</a>
+          </div>
+          <div class="price">
+            <span class="price-new">{{number_format($pro->product_price).'VNĐ'}}</span>
+          </div>
+          <div class="cart">
+            <button type="button" class="btn btn-primary">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+	@endforeach
+  </div>
+  {{$all_product->links('pagination::bootstrap-4 ')}}
+</div>
+
+	<!-- Hiển thị sp end -->
 	<div class="position-04">
 		<div class="container">
 			<div class="position-06">

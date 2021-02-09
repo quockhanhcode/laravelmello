@@ -28,7 +28,7 @@
 										<ul>
 										@foreach($category as $key => $cate )
 											<li><a href="{{URL::to('/danh-muc-san-pham/'.$cate->category_id)}}">{{$cate->category_name}}</a></li>
-											@endforeach
+										@endforeach
 										</ul>
 									</div>
 								</div>
@@ -42,7 +42,7 @@
 											<li><a class="top-link-myaccount" href="#">My Account</a></li>
 											<li><a class="top-link-wishlist" href="#">My Wishlist</a></li>
 											<li><a class="top-link-checkout" href="#">Checkout</a></li>
-											<li><a class="top-link-login" href="{{URL::to('/login')}}">Log In</a></li>
+											<li><a class="top-link-login" href="{{URL::to('/login-admin')}}">Log In</a></li>
 										</ul>
 										<ul class="right">
 											<li class="language"><a href="#" class="selected"><img
@@ -65,24 +65,28 @@
 								</div>
 								<div class="box-cart">
 									<div class="cart-mini">
-										<div class="title">
+										<a class="title" href="{{URL::to('show-cart')}}">
 											<span class="item">0</span>
-										</div>
+										</a>
+										<?php
+$content = Cart::content();
+?>
 										<div class="block-content">
 											<div class="inner">
 												<p class="block-subtitle">Recently added item(s)</p>
+												@foreach($content as $cart_content)
 												<ol id="cart-sidebar" class="mini-products-list">
 													<li class="item">
-														<a href="#" title="Fashion Product 09" class="product-image">
-															<img src="fontend/images/product/small/image-demo-1.jpg"
-																alt="Fashion Product 09" />
+														<a href="#" class="product-image">
+															<img src="{{URL::to('images/' .$cart_content->options->image)}}"
+																alt="" />
 														</a>
-														<a href="#" class="btn-remove">Remove This Item</a>
+														<a href="{{URL::to('/delete-to-cart/'.$cart_content->rowId)}}" onclick="return confirm('Are you sure?');" class="btn-remove">Remove This Item</a>
 														<a href="#" title="Edit item" class="btn-edit">Edit item</a>
 														<div class="product-details">
 															<p class="product-name"><a title="Fashion Product 09"
-																	href="#">Fashion Product 09</a></p>
-															<span class="price">$200.00</span>
+																	href="#">{{$cart_content->name}}</a></p>
+															<span class="price">{{number_format($cart_content->price).'VNĐ'}}</span>
 															<div class="qty-abc">
 																<a title="Decrement" class="qty-change-left"
 																	href="#">down</a>
@@ -93,10 +97,11 @@
 														</div>
 													</li>
 												</ol>
+												@endforeach
 												<div class="summary">
 													<p class="subtotal">
 														<span class="label">Subtotal:</span> <span
-															class="price">$200.00</span>
+															class="price">{{Cart::subtotal().'VNĐ'}}</span>
 													</p>
 												</div>
 												<div class="actions">

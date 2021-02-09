@@ -299,19 +299,7 @@
 												<span class="fa fa-star"></span>
 												<p class="product-description" name="product_desc">{{$details_pro->product_desc}}</p>
 												<h4 class="price" name="product_price">{{number_format($details_pro->product_price).'VNĐ'}}</h4>
-												<p class="vote"><strong>91%</strong> of người mua hài lòng với sản phẩm
-													này <strong>(87 bình chọn)</strong>
 												</p>
-												<h5 class="sizes">Kích cỡ: <span class="size" data-toggle="tooltip"
-														title="small">s</span> <span class="size" data-toggle="tooltip"
-														title="medium">m</span> <span class="size" data-toggle="tooltip"
-														title="large">l</span> <span class="size" data-toggle="tooltip"
-														title="xtra large">xl</span>
-												</h5>
-												<h5 class="colors">Màu: <span class="color orange not-available"
-														data-toggle="tooltip" title="Not In store"></span> <span
-														class="color green"></span> <span class="color blue"></span>
-												</h5>
 												<form action="{{URL::to('/save-cart')}}" method="post">
 												{{csrf_field()}}
 												<div class="action">

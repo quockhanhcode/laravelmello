@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','App\Http\Controllers\HomeController@index');
 
 //Hiển thị trang đăng nhập
-Route::get('/login','App\Http\Controllers\AdminController@login');
+Route::get('/login-admin','App\Http\Controllers\AdminController@login');
 Route::get('/admin-layout','App\Http\Controllers\AdminController@admin_layout');
 Route::get('/logout','App\Http\Controllers\AdminController@logout');
 Route::post('/admin-layout-manager', 'App\Http\Controllers\AdminController@admin_layout_manager');
@@ -51,6 +51,8 @@ Route::get('/danh-muc-san-pham/{category_id}','App\Http\Controllers\CategoryCont
 Route::post('/save-cart','App\Http\Controllers\CartController@save_cart');
 Route::get('/show-cart','App\Http\Controllers\CartController@show_cart');
 Route::get('/delete-to-cart/{rowId}','App\Http\Controllers\CartController@delete_to_cart');
+Route::post('/update-cart','App\Http\Controllers\CartController@update_cart');
+
 //Tìm kiếm sản phẩm theo từ khóa
 Route::post('/search-product','App\Http\Controllers\HomeController@search');
 
